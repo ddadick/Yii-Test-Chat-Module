@@ -3470,3 +3470,33 @@ Stack trace:
 #7 /var/www/framework/base/CApplication.php(162): CWebApplication->processRequest()
 #8 /var/www/yiidemos/htdocs/index.php(11): CWebApplication->run()
 REQUEST_URI=/index.php/test/test/request
+2013/04/09 01:22:27 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/var/www/yiidemos/htdocs/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /var/www/framework/web/CAssetManager.php:116
+Stack trace:
+#0 /var/www/framework/web/CAssetManager.php(101): CAssetManager->setBasePath('/var/www/yiidem...')
+#1 /var/www/framework/web/CAssetManager.php(219): CAssetManager->getBasePath()
+#2 /var/www/framework/zii/widgets/CListView.php(179): CAssetManager->publish('/var/www/framew...')
+#3 /var/www/framework/web/CBaseController.php(148): CListView->init()
+#4 /var/www/framework/web/CBaseController.php(173): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#5 /var/www/yiidemos/htdocs/protected/views/post/index.php(9): CBaseController->widget('zii.widgets.CLi...', Array)
+#6 /var/www/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#7 /var/www/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#8 /var/www/framework/web/CController.php(870): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#9 /var/www/framework/web/CController.php(783): CController->renderPartial('index', Array, true)
+#10 /var/www/yiidemos/htdocs/protected/controllers/PostController.php(142): CController->render('index', Array)
+#11 /var/www/framework/web/actions/CInlineAction.php(50): PostController->actionIndex()
+#12 /var/www/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#13 /var/www/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#14 /var/www/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#15 /var/www/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#16 /var/www/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/framework/web/CController.php(292): CFilterChain->run()
+#19 /var/www/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/framework/web/CWebApplication.php(276): CController->run('')
+#21 /var/www/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#22 /var/www/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /var/www/yiidemos/htdocs/index.php(11): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php
+HTTP_REFERER=http://yiidemos.www/index.php/site/login
+---

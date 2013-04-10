@@ -14,14 +14,17 @@
 </head>
 <body>
 <div class="row">
+
 <div class="span12">
-<?php if(_if_auth($this)){?>
-<p>Logout()</p>
+<?php if(false!==($name=_if_auth($this))){?>
+<p><a href="logout">Logout(<?php echo $name;?>)</a></p>
 <?php }else{ ?>
-<p>Не Залогинен</p>
+<p><a href="auth">Login(Guest)</a></p>
 <?php }?>
 </div>
+
 </div>
+
 <?php echo (isset($content)?$content:''); ?>
 
 </body>

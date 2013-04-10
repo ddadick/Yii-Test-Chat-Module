@@ -15,8 +15,9 @@ if ( ! function_exists('_auth'))
 {
 	function _auth($a,$url=NULL)
 	{
-		if(NULL!==$url && strlen(trim($url)) && false!==($s=$a->session->userdata('auth')) && false!==($c=$a->input->cookie('test_auth')) && $s==$c){
-			header('location: '.$url);
+		$url=(NULL===$url && !strlen(trim($url)))?$a->uri->config->item('base_url'):$url;
+		if(false!==($s=$a->session->userdata('auth')) && false!==($c=$a->input->cookie('test_auth')) && $s==$c){
+			header('Location: '.$url);
 			exit;
 		}
 	}
@@ -26,7 +27,8 @@ if ( ! function_exists('_if_auth'))
 	function _if_auth($a)
 	{
 		if(false!==($s=$a->session->userdata('auth')) && false!==($c=$a->input->cookie('test_auth')) && $s==$c){
-			return TRUE;
+			return $a->acl_model->acl_name_user($a->session->userdata('auth'));
+			//return TRUE;
 		}
 		return FALSE;
 	}
@@ -40,7 +42,7 @@ if ( ! function_exists('_set_auth'))
 			array(
 				'name'=>'auth',
 				'value'=>$auth,
-				'expire'=>'86500',
+				'expire'=>'0',
 				'domain' => '',
 				'path' => '/',
 				'prefix' => 'test_',
@@ -54,6 +56,16 @@ if ( ! function_exists('_set_auth'))
 		return $auth;
 	}
 }
-
-/* End of file url_helper.php */
-/* Location: ./system/helpers/url_helper.php */
+if ( ! function_exists('_del_auth'))
+{
+	function _del_auth($a)
+	{
+		$a->acl_model->del_auth($a->session->userdata('auth'));
+		$a->session->unset_userdata('auth');
+		header('Location: '.$a->uri->config->item('base_url'));
+		_auth($a);
+		
+	}
+}
+/* End of file auth_helper.php */
+/* Location: ./application/helpers/auth_helper.php */

@@ -21,6 +21,10 @@ class Test extends CI_Controller {
 	{
 		$this->load->view('test_message');
 	}
+	public function test()
+	{
+		$this->load->view('test_message');
+	}
 }
 
 /* End of file welcome.php */

@@ -48,10 +48,17 @@
 $active_group = 'default';
 $active_record = TRUE;
 
+
 $db['default']['hostname'] = '192.168.1.10';
 $db['default']['username'] = 'dengubenko';
 $db['default']['password'] = 'Q1w2e3r4t5y6';
 $db['default']['database'] = 'dengubenko_test';
+/**
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'root';
+$db['default']['database'] = 'dengubenko_test';
+*/
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'first_';
 $db['default']['pconnect'] = TRUE;

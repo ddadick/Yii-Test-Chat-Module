@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://local.test/';
+$config['base_url']	= 'http://'.$_SERVER['HTTP_HOST'].'/';
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ $config['base_url']	= 'http://local.test/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -245,14 +245,14 @@ $config['encryption_key'] = 'ahaskjdh2846867&^%*&%&*65ekfhksfdjfksdjfh';
 |
 */
 $config['sess_cookie_name']		= 'ci_session';
-$config['sess_expiration']		= 7200;
+$config['sess_expiration']		= 0;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= FALSE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
-$config['sess_time_to_update']	= 8600;
+$config['sess_time_to_update']	= 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -266,7 +266,7 @@ $config['sess_time_to_update']	= 8600;
 |
 */
 $config['cookie_prefix']	= "test_";
-$config['cookie_domain']	= "local.test";
+$config['cookie_domain']	= $_SERVER["HTTP_HOST"];
 $config['cookie_path']		= "/";
 $config['cookie_secure']	= FALSE;
 

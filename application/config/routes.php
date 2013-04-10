@@ -38,11 +38,10 @@
 |
 */
 
+
 $route['default_controller'] = "wall";
-$route['auth-test']='auth/test';
+$route['logout']="auth/logout";
 $route['404_override'] = '';
-
-
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

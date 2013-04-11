@@ -46,6 +46,16 @@ class Acl_model extends CI_Model
   	
   }
   
+  function find_user_from_id($id=NULL){
+  	if($id===NULL){
+  		return false;
+  	}
+  	$this->db->select('nickname', false);
+  	$this->db->where(array('id'=>$id));
+  	return (count($a=$this->db->get('user')->result_array()))?$a[0]['nickname']:false;
+  	 
+  }
+  
   function set_auth($auth=NULL,$user=NULL){
   	if(NULL===$auth && NULL===$user){
   		return false;
@@ -83,14 +93,17 @@ class Acl_model extends CI_Model
   
   
   
-  private function defaul_role(){
+  function default_role(){
   	return '1';
+  }
+  function default_id_guest(){
+  	return '5';
   }
   private function defaul_find_function($auth=NULL){
   	$this->db->select('user', false);
   	$this->db->where(array('hash'=>$auth));
   	if(false===((count($b=$this->db->get('user_hash')->result_array()))?$b:false)){
-  		return $this->defaul_role();
+  		return $this->default_role();
   	}else{
   		$this->db->select('role', false);
 	  	$this->db->where(array('id'=>$b[0]['user']));
@@ -100,7 +113,7 @@ class Acl_model extends CI_Model
   		return $b[0]['role'];
   	}
   }
-  // Name of user of auth-key
+  // Name of user of auth-name
   function acl_name_user($auth=NULL){
   	if(NULL===$auth){
   		return false;
@@ -118,6 +131,37 @@ class Acl_model extends CI_Model
   		return $b[0]['nickname'];
   	}
   }
+  // Name of user of auth-name
+  function acl_name_user_from_id($id=NULL){
+  	if(NULL===$id){
+  		return false;
+  	}
+  	$this->db->select('nickname', false);
+  	$this->db->where(array('id'=>$id));
+  	if(false===((count($b=$this->db->get('user')->result_array()))?$b:false)){
+  		return false;
+  	}
+  	return $b[0]['nickname'];
+  }
+  // Name of user of auth-key
+  function acl_name_id($auth=NULL){
+  	if(NULL===$auth){
+  		return false;
+  	}
+  	$this->db->select('user', false);
+  	$this->db->where(array('hash'=>$auth));
+  	if(false===((count($b=$this->db->get('user_hash')->result_array()))?$b:false)){
+  		return false;
+  	}else{
+  		$this->db->select('id', false);
+  		$this->db->where(array('id'=>$b[0]['user']));
+  		if(false===((count($b=$this->db->get('user')->result_array()))?$b:false)){
+  			return false;
+  		}
+  		return $b[0]['id'];
+  	}
+  }
+  
   /**
    * ACL for create comment
    * @param string $auth

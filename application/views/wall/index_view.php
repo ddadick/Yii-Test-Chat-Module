@@ -10,8 +10,12 @@ if(isset($items) && count($items)){
 		<code>
 		<div class="span12">
 <?php if(_is_create_comment($this)){?>
-<p><a href="#">Create Comment</a></p>
+<p id="wall-comment-text-<?php echo $item->id?>" class="wall-comment-text" >
+	<a id="wall-comment-text-add-<?php echo $item->id?>" class="wall-comment-text-add" href="javascript:;" onclick="Wall.comment_view('<?php echo $item->id?>');" style="display:block;"">Create Comment</a>
+	<a id="wall-comment-text-cancel-<?php echo $item->id?>" class="wall-comment-text-cancel" href="javascript:;" onclick=" Wall.comment_link('','<?php echo $item->id?>');" style="display:none;"">Cancel Comment</a>
+</p>
 <?php } ?>
+<div  id="wall-comment-<?php echo $item->id?>" class="wall-comment" style="display:none;"></div>
 </div>
 		
 <div class="span12">
@@ -41,6 +45,7 @@ if(isset($items) && count($items)){
 
 
 		</code>
+		<div id="comment-list" class="comment-list"><?php echo $comment?></div>
 	</div>
 
 	

@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','session');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form','auth','cookie','acl');
+$autoload['helper'] = array('url', 'form','auth','cookie','acl','message');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('acl_model');
+$autoload['model'] = array('acl_model','comment_model','post_model');
 
 
 /* End of file autoload.php */
